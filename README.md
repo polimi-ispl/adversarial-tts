@@ -4,14 +4,12 @@ by Jiayan Cui, Davide Salvi, Paolo Bestagini, and Stefano Tubaro.
 This repository will host the official implementation of *Detector-Guided Vocoder Training for Adversarial Text-to-Speech Synthesis*, accepted at IEEE WIFS 2026.
 
 <p align="center">
-  <!-- Replace XXXX.XXXXX with the arXiv ID once available -->
+  <!-- ARXIV BADGE 
   <a href="https://arxiv.org/abs/XXXX.XXXXX"><img src="https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg" alt="arXiv"></a>
+  -->
   <a href="https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
   <img src="https://img.shields.io/badge/Code-Coming%20soon-lightgrey.svg" alt="Code coming soon">
 </p>
-
-## News
-- 2026/10 - 📢 Repository created. Code and model weights are coming soon.
 
 ## Code release
 
@@ -86,15 +84,6 @@ the development of more robust countermeasures. The same techniques could be mis
 produce synthetic speech that is harder to detect. We release this work **exclusively for
 defensive security research** and encourage further work on robust detection,
 benchmarking protocols, and ethical guidelines for generative audio.
-
-## Acknowledgements
-
-Our work builds on [FastSpeech2](https://arxiv.org/abs/2006.04558),
-[BigVGAN](https://github.com/NVIDIA/BigVGAN),
-[RawNet2](https://arxiv.org/abs/2011.01108), [TSSD](https://doi.org/10.1109/LSP.2021.3089437),
-[AASIST](https://github.com/clovaai/aasist), and the
-[LibriTTS](https://www.openslr.org/60/) dataset. We thank their authors for making these
-resources available.
 
 ## Citation
 
