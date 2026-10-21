@@ -1,0 +1,11 @@
+include LICENSE.md THIRD_PARTY_NOTICES.md
+recursive-include requirements *.txt
+recursive-include acoustic/config *.yaml *.txt
+recursive-include acoustic/lexicon *.dict
+recursive-include acoustic/G2P *.json *.txt
+recursive-include acoustic/hifigan *.json LICENSE
+recursive-include vocoder/configs *.json *.yaml *.conf
+recursive-include vocoder/incl_licenses *
+
+include README.zh-CN.md README.it.md
+recursive-include docs *.md

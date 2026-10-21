@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#F5F7FC">
+  <meta name="description" content="Listen, compare, and synthesize. Reference-conditioned AdaSpeech with three BigVGAN vocoders: V, VR, and VRT.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adversarial TTS · Listen and compare">
+  <meta property="og:description" content="The audio companion to Detector-Guided Vocoder Training for Adversarial Text-to-Speech Synthesis.">
+  <meta property="og:url" content="https://polimi-ispl.github.io/adversarial-tts/">
+  <meta property="og:image" content="https://polimi-ispl.github.io/adversarial-tts/assets/cover.svg">
+  <meta property="og:image:alt" content="Adversarial TTS with waveforms drawn from the original audio samples">
+  <link rel="canonical" href="https://polimi-ispl.github.io/adversarial-tts/">
+  <title>Adversarial TTS · Listen and compare</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preload" href="assets/fonts/manrope-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/manrope-800.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#listen">Skip to audio samples</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#top"><img src="assets/favicon.svg" width="30" height="30" alt=""><span>Adversarial TTS</span></a>
+    <nav aria-label="Main navigation"><a href="#listen">Listen</a><a href="https://github.com/polimi-ispl/adversarial-tts/blob/main/paper.pdf">Paper</a><a href="https://github.com/polimi-ispl/adversarial-tts">Code</a><a href="#models">Models</a></nav>
+  </header>
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="project-title">
+      <div class="hero-copy">
+        <h1 id="project-title">Adversarial TTS</h1>
+        <p class="paper-title">Detector-Guided Vocoder Training <br class="desktop-break"> for Adversarial Text-to-Speech Synthesis</p>
+        <p class="authors">Jiayan Cui, Davide Salvi, Paolo Bestagini, Stefano Tubaro</p>
+        <p class="affiliation">Politecnico di Milano</p>
+        <div class="hero-actions"><a class="button primary" href="#listen"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg>Listen &amp; compare</a><a class="button secondary" href="#quick-start">Quick start</a></div>
+      </div>
+      <figure class="signal-study" aria-labelledby="signal-caption">
+        <div class="signal-heading"><span>The same words, three signals</span><span>Woman 29</span></div>
+        <div class="signal-row"><div><strong>V</strong><span>Baseline</span></div><svg class="hero-wave" data-method="v" viewBox="0 0 384 110" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <div class="signal-row"><div><strong>VR</strong><span>RawNet2</span></div><svg class="hero-wave" data-method="vr" viewBox="0 0 384 110" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <div class="signal-row"><div><strong>VRT</strong><span>RawNet2 + TSSD</span></div><svg class="hero-wave" data-method="vrt" viewBox="0 0 384 110" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+        <figcaption id="signal-caption"><span>“The wingtip”</span><span>Waveforms from the original samples</span></figcaption>
+      </figure>
+    </section>
+
+    <section id="listen" class="listening-section wrap" aria-labelledby="listen-title">
+      <div class="section-heading"><div><h2 id="listen-title">Hear the difference.</h2></div><p>Choose a voice and a prompt. <br> Switch vocoders at the same playback position.</p></div>
+      <div id="workspace" class="workspace" aria-busy="true"><p class="initial-state" role="status">Loading the audio collection…</p></div>
+      <noscript><p>This listening interface needs JavaScript. You can also listen on the <a href="https://h0yjmbl9to9.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh">original audio samples page</a>.</p></noscript>
+      <div class="listening-notes"><p>6 voices <span>×</span> 3 prompts <span>×</span> 3 vocoders</p><p>Headphones recommended. Original recordings; no processing during playback.</p></div>
+      <p id="player-status" class="sr-only" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="study" class="study-section wrap" aria-labelledby="study-title">
+      <div class="study-heading"><h2 id="study-title">From words <br> to waveforms.</h2><p>The acoustic model predicts the speech. The vocoder shapes the signal.</p></div>
+      <div class="method-content">
+        <ol class="pipeline" aria-label="Synthesis pipeline">
+          <li><span class="step-number">01</span><h3>Text + reference</h3><p>English or Mandarin, <br> with voice conditioning.</p></li>
+          <li><span class="step-number">02</span><h3>AdaSpeech</h3><p>A predicted postnet mel, <br> 80 frequency bands.</p></li>
+          <li><span class="step-number">03</span><h3>BigVGAN</h3><p>V, VR, or VRT. <br> A waveform at 22.05 kHz.</p></li>
+        </ol>
+        <div class="method-list">
+          <article class="method-description"><span class="method-symbol">V</span><div><h3>Baseline</h3><p>Speech synthesis without a detector-specific adversarial objective.</p></div><span class="method-target">No detector target</span></article>
+          <article class="method-description"><span class="method-symbol">VR</span><div><h3>One detector</h3><p>Adversarial fine-tuning against RawNet2 in a white-box setting.</p></div><span class="method-target">RawNet2</span></article>
+          <article class="method-description"><span class="method-symbol">VRT</span><div><h3>Two detectors</h3><p>Adversarial fine-tuning against RawNet2 and TSSD together.</p></div><span class="method-target">RawNet2 + TSSD</span></article>
+        </div>
+        <p class="method-note">AASIST is held out of vocoder fine-tuning to evaluate transfer. Listening examples illustrate the methods; detector performance is evaluated separately in the study.</p>
+      </div>
+    </section>
+
+    <section id="models" class="models-section wrap" aria-labelledby="models-title">
+      <div class="section-heading"><h2 id="models-title">Models and configuration.</h2><p>Matching acoustic weights, three vocoders, <br> and explicit inference configuration.</p></div>
+      <div class="model-release">
+        <div class="release-copy"><span class="release-status"><span aria-hidden="true"></span>Model checkpoints</span><h3>Acoustic + V / VR / VRT</h3><p>Download the AdaSpeech acoustic model, V / VR / VRT vocoders, and matching configurations from Hugging Face. The package includes pronunciation dictionaries and a ready-to-use synthesis bundle.</p><div class="resource-links"><a class="text-link" href="https://huggingface.co/Cocii/adversarial-tts/tree/main">Download models</a><a class="text-link" href="https://github.com/polimi-ispl/adversarial-tts/blob/main/docs/MODELS.md">Model guide</a></div></div>
+        <dl class="model-specs"><div><dt>Acoustic model</dt><dd>AdaSpeech · reference-conditioned</dd></div><div><dt>Vocoder</dt><dd>BigVGAN · V, VR, VRT</dd></div><div><dt>Interface</dt><dd>22.05 kHz · 80-band mel · hop 256</dd></div><div><dt>Voice conditioning</dt><dd>512-D embedding + reference mel or audio</dd></div></dl>
+      </div>
+    </section>
+
+    <section id="quick-start" class="quick-start wrap" aria-labelledby="quick-start-title">
+      <div class="quick-start-copy"><h2 id="quick-start-title">Make your first <br> waveform.</h2><p>Install the project, provide matching model assets and reference conditioning, then select a vocoder.</p><p class="quick-start-requirement">Python 3.10+ <br> Acoustic: CPU or CUDA <br> Vocoder: CPU, CUDA, or explicit Apple MPS</p><a class="button light" href="https://github.com/polimi-ispl/adversarial-tts/blob/main/README.md">Setup guide</a></div>
+      <div class="code-example"><div class="code-heading"><span>Text → mel → WAV</span><span>With your configured assets</span></div><pre><code><span class="code-comment"># Install once</span>
+python -m pip install -e ".[acoustic,vocoder]" huggingface_hub
+
+<span class="code-comment"># Download checkpoints</span>
+hf download Cocii/adversarial-tts --local-dir checkpoints
+
+<span class="code-comment"># Select V, VR, or VRT</span>
+python inference.py \
+  --config checkpoints/tts.yaml \
+  --text "Hello, this is a speech synthesis example." \
+  --reference-embedding /path/to/speaker.npy \
+  --reference-mel /path/to/reference-mel.npy \
+  --vocoder VRT --output-dir outputs/example</code></pre><p>Requires an existing model bundle, speaker embedding, and reference mel. Models are not downloaded automatically.</p></div>
+    </section>
+
+    <section id="resources" class="resources-section wrap" aria-labelledby="resources-title">
+      <div class="section-heading"><h2 id="resources-title">Code, context, and credits.</h2></div>
+      <div class="resource-list">
+        <article class="resource-row"><h3>Documentation</h3><div><p>Installation, text and batch synthesis, conditioning, saved-mel vocoding, WAV resynthesis, training, and testing.</p><div class="resource-links"><a class="text-link" href="https://github.com/polimi-ispl/adversarial-tts">GitHub</a><a class="text-link" href="https://github.com/polimi-ispl/adversarial-tts/blob/main/README.md">English</a><a class="text-link" href="https://github.com/polimi-ispl/adversarial-tts/blob/main/README.zh-CN.md" lang="zh-CN">简体中文</a><a class="text-link" href="https://github.com/polimi-ispl/adversarial-tts/blob/main/README.it.md" lang="it">Italiano</a></div></div></article>
+        <article class="resource-row"><h3>Acknowledgements</h3><div><p>We thank <a href="https://speechresearch.github.io/adaspeech/">Microsoft’s AdaSpeech</a> for the acoustic-model foundation and <a href="https://github.com/NVIDIA/BigVGAN">NVIDIA BigVGAN</a> for waveform synthesis, along with the authors of HiFi-GAN, Snake/alias-free activations, Tacotron utilities, RawNet2, TSSD, and AASIST. Original attribution and applicable license notices are retained in the <a href="https://github.com/polimi-ispl/adversarial-tts/blob/main/THIRD_PARTY_NOTICES.md">source repository</a>.</p></div></article>
+        <article class="resource-row"><h3>About the recordings</h3><div><p>The collection includes four training-set speakers and two unseen voices. Gorou and Yae Miko are character voices from <i>Genshin Impact</i> by miHoYo, as identified in the original collection. Speaker references contain different text from the synthesized prompts; excerpts are reconstructed from source filenames.</p><p>The recordings illustrate the methods; detector metrics are evaluated separately in the paper. No blanket license is asserted for the recordings or model weights.</p><a class="text-link" href="https://h0yjmbl9to9.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh">Original audio collection</a></div></article>
+      </div>
+      <p class="preview-note">Listen to the original research recordings, then explore the models and synthesis guide.</p>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand" href="#top"><img src="assets/favicon.svg" width="24" height="24" alt=""><span>Adversarial TTS</span></a><p>Cui, Salvi, Bestagini, Tubaro <br> Politecnico di Milano</p><a class="text-link" href="#listen">Back to listening</a></footer>
+</body>
+</html>

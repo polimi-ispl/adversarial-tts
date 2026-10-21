@@ -1,0 +1,12 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["mps: requires an available Apple Metal backend"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+include = ["inference.py", "inference_e2e.py", "inference_utils.py", "tests/*.py"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
