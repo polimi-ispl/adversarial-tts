@@ -1,0 +1,61 @@
+name: Import verified source release
+
+on:
+  push:
+    branches: [prepare-ispl-release]
+    paths: ['.github/workflows/import-release.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: import-verified-source
+  cancel-in-progress: false
+
+jobs:
+  import:
+    if: github.repository == 'polimi-ispl/adversarial-tts' && github.ref == 'refs/heads/prepare-ispl-release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: prepare-ispl-release
+      - name: Verify and import the source archive
+        env:
+          ARCHIVE_SHA256: a68456c677c300173b090c076a1286708671248ee92e714750958dafc05b9649
+          PAPER_SHA256: 0f8416d50b1677f8fa8124c6e3ceacc27fd94797ef78891d416493fabb8b5576
+        run: |
+          python - <<'PY'
+          from pathlib import Path, PurePosixPath
+          import hashlib, json, os, shutil, zipfile
+          archive = Path('release-source.zip')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest() == os.environ['ARCHIVE_SHA256']
+          assert hashlib.sha256(Path('paper.pdf').read_bytes()).hexdigest() == os.environ['PAPER_SHA256']
+          with zipfile.ZipFile(archive) as z:
+              manifest = json.loads(z.read('manifest.json'))
+              assert len(manifest) == 244
+              expected = {'manifest.json'} | {'payload/' + e['path'] for e in manifest}
+              assert len(expected) == 245 and set(z.namelist()) == expected
+              for entry in manifest:
+                  relative = PurePosixPath(entry['path'])
+                  assert not relative.is_absolute() and '..' not in relative.parts
+                  assert '.git' not in relative.parts and relative.parts[:2] != ('.github', 'workflows')
+                  assert str(relative) != 'paper.pdf' and entry['mode'] in ('100644', '100755')
+                  data = z.read('payload/' + str(relative))
+                  actual = hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+                  assert actual == entry['sha'], relative
+                  target = Path(str(relative))
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  target.write_bytes(data)
+                  target.chmod(0o755 if entry['mode'] == '100755' else 0o644)
+          assert hashlib.sha256(Path('paper.pdf').read_bytes()).hexdigest() == os.environ['PAPER_SHA256']
+          archive.unlink()
+          PY
+      - name: Commit source with original executable modes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git update-index --chmod=+x scripts/acoustic.sh scripts/vocoder.sh scripts/run_component.py
+          git commit -m 'Import verified inference code, audio assets and documentation'
+          git push origin HEAD:prepare-ispl-release
