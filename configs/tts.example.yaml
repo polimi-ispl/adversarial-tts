@@ -1,0 +1,18 @@
+# Paths are relative to this file. Supply actual matching model assets.
+acoustic:
+  checkpoint: ../checkpoints/acoustic/model.pth.tar
+  preprocess: ../acoustic/config/mel_infer/preprocess.yaml
+  model: ../acoustic/config/mel_infer/model.yaml
+  # Optional constructor stats; omit when the checkpoint stores complete trained bins.
+  # stats: ../checkpoints/acoustic/stats.json
+  lexicon: ../acoustic/lexicon
+vocoders:
+  V:
+    checkpoint: ../checkpoints/V/generator
+    config: ../checkpoints/V/config.json
+  VR:
+    checkpoint: ../checkpoints/VR/generator
+    config: ../checkpoints/VR/config.json
+  VRT:
+    checkpoint: ../checkpoints/VRT/generator
+    config: ../checkpoints/VRT/config.json

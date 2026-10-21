@@ -1,0 +1,2 @@
+# Compatibility entry point. Canonical dependency lists live in requirements/.
+-r requirements/inference-macos.txt

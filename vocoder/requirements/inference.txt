@@ -1,0 +1,8 @@
+# Inference only. Install the PyTorch build appropriate for your hardware first.
+# The original training environment remains separate in ../requirements.txt.
+torch>=2.2,<3
+numpy>=1.26,<3
+librosa>=0.10.2,<2
+scipy>=1.11,<2
+matplotlib>=3.8,<4
+tqdm>=4.66,<5

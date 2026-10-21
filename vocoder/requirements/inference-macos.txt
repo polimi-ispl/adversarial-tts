@@ -1,0 +1,8 @@
+# Direct dependency versions tested on macOS 14.8.9, Apple M2, Python 3.12.14.
+# Inference/component checks only; this is not the paper's training environment.
+torch==2.14.1
+numpy==2.5.4
+librosa==1.0.0
+scipy==1.18.1
+matplotlib==3.11.2
+tqdm==4.70.1

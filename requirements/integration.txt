@@ -1,0 +1,3 @@
+# Root config/NumPy interface tools only. Keep component environments separate.
+numpy>=1.24,<3
+PyYAML>=6,<7
