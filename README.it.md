@@ -6,7 +6,7 @@ Implementazione e strumenti di inferenza per *Detector-Guided Vocoder Training f
 
 <p align="center">
   <a href="https://github.com/polimi-ispl/adversarial-tts/blob/main/paper.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
-  <a href="https://cocii.github.io/adversarial-tts/"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
+  <a href="https://polimi-ispl.github.io/adversarial-tts/"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
   <a href="https://huggingface.co/Cocii/adversarial-tts/tree/main"><img src="https://img.shields.io/badge/Models-Hugging%20Face-ffcc00.svg" alt="Model checkpoints"></a>
 </p>
 
@@ -14,7 +14,7 @@ Implementazione e strumenti di inferenza per *Detector-Guided Vocoder Training f
 
 ## Campioni audio
 
-Confronta sei voci, tre testi e i vocoder di base e guidati dai rilevatori nella **[pagina di ascolto interattiva](https://cocii.github.io/adversarial-tts/)**. Il lettore consente di mantenere la posizione durante il confronto. È disponibile anche la [raccolta audio originale](https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh).
+Confronta sei voci, tre testi e i vocoder di base e guidati dai rilevatori nella **[pagina di ascolto interattiva](https://polimi-ispl.github.io/adversarial-tts/)**. Il lettore consente di mantenere la posizione durante il confronto. È disponibile anche la [raccolta audio originale](https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh).
 
 [Panoramica](#panoramica) · [Metodo](#metodo) · [Risultati](#risultati) · [Avvio rapido](#avvio-rapido) · [Documentazione](#documentazione)
 

@@ -6,7 +6,7 @@ Implementation and inference tools for *Detector-Guided Vocoder Training for Adv
 
 <p align="center">
   <a href="https://github.com/polimi-ispl/adversarial-tts/blob/main/paper.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
-  <a href="https://cocii.github.io/adversarial-tts/"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
+  <a href="https://polimi-ispl.github.io/adversarial-tts/"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
   <a href="https://huggingface.co/Cocii/adversarial-tts/tree/main"><img src="https://img.shields.io/badge/Models-Hugging%20Face-ffcc00.svg" alt="Model checkpoints"></a>
 </p>
 
@@ -14,7 +14,7 @@ Implementation and inference tools for *Detector-Guided Vocoder Training for Adv
 
 ## Audio samples
 
-Compare six voices, three prompts, and the baseline / detector-guided vocoders on the **[interactive listening page](https://cocii.github.io/adversarial-tts/)**. The player supports playback-position locking for comparisons. The [original audio collection](https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh) is also available.
+Compare six voices, three prompts, and the baseline / detector-guided vocoders on the **[interactive listening page](https://polimi-ispl.github.io/adversarial-tts/)**. The player supports playback-position locking for comparisons. The [original audio collection](https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh) is also available.
 
 [Overview](#overview) · [Method](#method) · [Results](#results) · [Quick start](#quick-start) · [Documentation](#documentation)
 

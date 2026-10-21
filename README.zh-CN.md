@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/polimi-ispl/adversarial-tts/blob/main/paper.pdf"><img src="https://img.shields.io/badge/Paper-PDF-b31b1b.svg" alt="Paper PDF"></a>
-  <a href="https://cocii.github.io/adversarial-tts/"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
+  <a href="https://polimi-ispl.github.io/adversarial-tts/"><img src="https://img.shields.io/badge/Audio-Samples-1f6feb.svg" alt="Audio samples"></a>
   <a href="https://huggingface.co/Cocii/adversarial-tts/tree/main"><img src="https://img.shields.io/badge/Models-Hugging%20Face-ffcc00.svg" alt="Model checkpoints"></a>
 </p>
 
@@ -14,7 +14,7 @@
 
 ## 音频试听
 
-打开 **[交互式试听页](https://cocii.github.io/adversarial-tts/)**，比较六种声音、三段文本，以及基线和检测器引导的声码器。播放器支持锁定播放位置，方便切换对比。也可访问[原始音频集](https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh)。
+打开 **[交互式试听页](https://polimi-ispl.github.io/adversarial-tts/)**，比较六种声音、三段文本，以及基线和检测器引导的声码器。播放器支持锁定播放位置，方便切换对比。也可访问[原始音频集](https://my.feishu.cn/docx/FH7mdd1dco6xDkxFlhPchve8nyh)。
 
 [概述](#概述) · [方法](#方法) · [结果](#结果) · [快速开始](#快速开始) · [详细文档](#详细文档)
 
