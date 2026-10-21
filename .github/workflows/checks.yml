@@ -1,0 +1,53 @@
+name: TTS inference checks
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: |
+            requirements/*.txt
+            vocoder/requirements/*.txt
+      - name: Install CPU acoustic and vocoder inference dependencies
+        run: |
+          python -m pip install 'torch>=2.2,<3' --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e ".[acoustic,vocoder]" -r requirements/development.txt
+          python -m pip check
+      - name: Check maintained entry points
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+          (cd vocoder && python -m ruff check . && python -m ruff format --check .)
+          bash -n scripts/acoustic.sh scripts/vocoder.sh vocoder/inference.sh vocoder/scripts/infer.sh
+      - name: Test text-to-waveform with actual acoustic and vocoder models
+        run: python -m pytest -q
+      - name: Test isolated vocoder CLI
+        working-directory: vocoder
+        run: python -m pytest -q
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Check retained static samples
+        run: |
+          node --check site/app.js
+          node --test tests/position-lock.test.cjs
