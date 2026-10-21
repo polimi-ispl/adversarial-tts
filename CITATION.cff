@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "Please cite the associated research paper when using this software."
+title: "Detector-Guided Vocoder Training for Adversarial Text-to-Speech Synthesis"
+type: software
+authors:
+  - family-names: Cui
+    given-names: Jiayan
+  - family-names: Salvi
+    given-names: Davide
+  - family-names: Bestagini
+    given-names: Paolo
+  - family-names: Tubaro
+    given-names: Stefano
+repository-code: "https://github.com/polimi-ispl/adversarial-tts"
+preferred-citation:
+  type: conference-paper
+  title: "Detector-Guided Vocoder Training for Adversarial Text-to-Speech Synthesis"
+  authors:
+    - family-names: Cui
+      given-names: Jiayan
+    - family-names: Salvi
+      given-names: Davide
+    - family-names: Bestagini
+      given-names: Paolo
+    - family-names: Tubaro
+      given-names: Stefano
+  collection-title: "IEEE International Workshop on Information Forensics and Security (WIFS)"
+  year: 2026
